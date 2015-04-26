@@ -1,0 +1,17 @@
+{% extends "layout.jinja2" %}
+{% block body %}
+    <ul>
+    {% for article in articles %}
+        <li><a href="{{ url.article(article.id) }}">{{ article.title_translated }}</a></li>
+    {% endfor %}
+    </ul>
+
+    {% for i in range(1, page_total + 1) %}
+        {% if i != page_current %}
+            <a href="{{ url.index(i) }}">{{ i }}</a>
+        {% endif %}
+        {% if i == page_current %}
+            {{ i }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

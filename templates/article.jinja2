@@ -1,0 +1,13 @@
+{% extends "layout.jinja2" %}
+{% block body %}
+    <h2>{{ article.title_translated }}</h2>
+    {% if article.image %}
+        <img src="{{ url.image(article.image) }}"/>
+    {% endif %}
+    <div>{{ article.summary_translated }}</div>
+    <ul>
+        {% for tag in article.tags.split(",") %}
+            <li><a href="{{ url.tag(tag, 1) }}">{{ tag }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
