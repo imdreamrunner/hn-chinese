@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2015 at 05:18 PM
+-- Generation Time: Apr 27, 2015 at 04:31 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.5.14
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `reader`
+-- Database: `hn-chinese`
 --
 
 -- --------------------------------------------------------
@@ -37,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `article` (
   `image` text NOT NULL,
   `tags` text NOT NULL,
   `url` varchar(512) NOT NULL,
-  `origin` varchar(128) NOT NULL,
+  `score` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `create_time` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -50,17 +50,8 @@ CREATE TABLE IF NOT EXISTS `article` (
 -- Indexes for table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`), ADD KEY `url` (`url`(255)), ADD KEY `origin` (`origin`);
+  ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `article`
---
-ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
