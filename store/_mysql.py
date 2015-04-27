@@ -10,7 +10,7 @@ _db = None
 def get_cursor():
     global _db
     if _db is None:
-        _db = MySQLdb.connect("localhost","reader","reader","reader" )
+        _db = MySQLdb.connect("localhost", "hn-chinese", "reader", "reader" )
     return _db.cursor()
 
 
