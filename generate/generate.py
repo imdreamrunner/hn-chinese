@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+import datetime
 import os
 import logging
 import store
@@ -19,6 +20,7 @@ PAGE_SIZE = 10
 
 def generate():
     articles = store.get_row_by_status(4)
+    articles = [_process_article(article) for article in articles]
     page_number = 1
     page_start = 0
     index_template = _template.get_template("index")
@@ -71,6 +73,11 @@ def _write_to_file(filename, content):
         os.mkdir(HTML_BASE_PATH)
     with open(HTML_BASE_PATH + "/" + filename, "wb") as f:
         f.write(content.encode("utf-8"))
+
+
+def _process_article(article):
+    article["create_time"] = datetime.datetime.fromtimestamp(article["create_time"]).strftime("%Y-%m-%d %H:%M")
+    return article
 
 
 def _copy_images(url):

@@ -76,7 +76,7 @@ def _parse_row(row):
 
 
 def get_row_by_status(status):
-    rows = _execute("SELECT * FROM `article` WHERE `status` = %s", (status,))
+    rows = _execute("SELECT * FROM `article` WHERE `status` = %s ORDER BY `create_time` DESC", (status,))
     return [_parse_row(row) for row in rows]
 
 

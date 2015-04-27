@@ -10,8 +10,12 @@ log = logging.getLogger(__name__)
 
 
 class Origin:
-    def __init__(self, name):
+    def __init__(self, name, title_list, title_css, content_css, image_css):
         self.ORIGIN_NAME = name
+        self.title_list = title_list
+        self.title_css = title_css
+        self.content_css = content_css
+        self.image_css = image_css
 
     def fetch(self, limit):
         self._fetch_url(limit)
@@ -42,10 +46,13 @@ class Origin:
         if html is None:
             return list()
         soup = BeautifulSoup(html)
-        titles = soup.select("ul#river1 h2.post-title")
+        titles = soup.select(self.title_list)
         url_list = list()
         for title in titles:
-            url_list.append(title.find("a")["href"])
+            try:
+                url_list.append(title["href"])
+            except Exception as e:
+                log.info("Error getting link:" + e)
         return url_list
 
     def _list_page_url(self, page_number):
@@ -68,20 +75,30 @@ class Origin:
             return None, None, None
         soup = BeautifulSoup(html)
         [s.extract() for s in soup('script')]
-        title = soup.select("h1.alpha")
+        title = soup.select(self.title_css)
         if len(title) > 0:
             title = title[0]
-            title = title.text.encode('utf-8')
-        content = soup.select("div.article-entry.text")
+            title = title.text.encode('utf-8').strip()
+        content = soup.select(self.content_css)
         if len(content) > 0:
             content = content[0]
-            content = content.text.encode('utf-8')
+            content = content.text.encode('utf-8').strip()
         else:
             content = None
-        image = soup.select("div.article-entry.text img")
+        image = soup.select(self.image_css)
         if len(image) > 0:
             image = image[0]
-            image = image['src'].encode('utf-8')
+            if image.has_attr("src") and len(image["src"]) > 0:
+                image = image['src'].encode('utf-8')
+            elif image.has_attr("data-original") and len(image["data-original"]) > 0:
+                image = image['data-original'].encode('utf-8')
+            else:
+                log.debug(image)
+                image = None
+                raise
         else:
             image = None
+        log.info(title)
+        log.info(content)
+        log.info(image)
         return title, content, image
