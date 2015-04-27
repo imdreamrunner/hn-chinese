@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 STORE_BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../images"))
 
 
-def fetch_html(url):
+def fetch_raw(url):
     r = requests.get(url)
     if r.status_code == 200:
         return r.text

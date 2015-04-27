@@ -47,9 +47,9 @@ def get_row_by_status(status):
 
 
 def save_new_url(row_id, url, title, score, create_time):
-    existing = get_row_by_id(id)
+    existing = get_row_by_id(row_id)
     if existing is None:
-        _execute("INSERT INTO `article` (`id`, `url`, `title_origin`, `origin`, `create_time`) "
+        _execute("INSERT INTO `article` (`id`, `url`, `title_origin`, `score`, `create_time`) "
                  "VALUES (%s, %s, %s, %s, %s)",
                  (row_id, url, title, score, create_time))
         return True

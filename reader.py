@@ -1,5 +1,6 @@
 import sys
 import logging
+import hn
 import fetch
 import summarize
 import translate
@@ -23,10 +24,11 @@ if __name__ == "__main__":
     command = args[1]
     if command == "fetch":
         log.debug("Command: fetch")
-        fetch.fetch_all()
-        summarize.summarize()
-        translate.translate()
-        tag.tag()
+        # hn.fetch()
+        fetch.fetch()
+        # summarize.summarize()
+        # translate.translate()
+        # tag.tag()
     elif command == "generate":
         log.debug("Command: generate")
         generate.generate()
