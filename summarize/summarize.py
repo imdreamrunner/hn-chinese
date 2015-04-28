@@ -15,7 +15,7 @@ LANGUAGE = "english"
 SENTENCES_COUNT = 7
 
 
-def summarize():
+def do():
     rows = store.get_row_by_status(1)
 
     for row in rows:

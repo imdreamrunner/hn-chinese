@@ -8,7 +8,7 @@ __email__ = "imdreamrunner@gmail.com"
 log = logging.getLogger(__name__)
 
 
-def fetch():
+def do():
     rows = store.get_row_by_status(0)
     for row in rows:
         url = row["url"]

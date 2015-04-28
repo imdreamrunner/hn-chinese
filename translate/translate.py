@@ -7,18 +7,16 @@ __author__ = "imdreamrunner"
 __email__ = "imdreamrunner@gmail.com"
 
 
-def translate():
+def do():
     rows = store.get_row_by_status(2)
     for row in rows:
         try:
-            title_translated, content_translated, summary_translated = translate_article(
+            title_translated, summary_translated = translate_article(
                 row["title_origin"],
-                row["content_origin"],
                 row["summary_origin"]
             )
             store.update_row(row["id"], {
                 "title_translated": title_translated,
-                "content_translated": content_translated,
                 "summary_translated": summary_translated,
                 "status": 3
             })

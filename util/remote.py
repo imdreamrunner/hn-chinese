@@ -13,7 +13,11 @@ STORE_BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(_
 
 
 def fetch_raw(url):
-    r = requests.get(url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/39.0.2171.95 Safari/537.36'
+    }
+    r = requests.get(url, headers=headers)
     if r.status_code == 200:
         return r.text
     else:

@@ -22,7 +22,7 @@ _number_processed = 0
 _number_total = 0
 
 
-def fetch():
+def do():
     global _number_total, _number_processed
     for source in SOURCE_LIST:
         raw = remote.fetch_raw(source)

@@ -1,4 +1,4 @@
-from .generate import generate
+from .generate import do
 
 __author__ = "imdreamrunner"
 __email__ = "imdreamrunner@gmail.com"

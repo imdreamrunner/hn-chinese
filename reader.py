@@ -22,16 +22,30 @@ if __name__ == "__main__":
         print("Usage: python reader.py <fetch|generate>")
         exit(1)
     command = args[1]
-    if command == "fetch":
+    actions = list()
+    if command == "crawl":
+        log.debug("Command: crawl")
+        actions = [hn, fetch, summarize, translate, tag]
+    elif command == "hn":
+        log.debug("Command: hn")
+        actions = [hn]
+    elif command == "fetch":
         log.debug("Command: fetch")
-        # hn.fetch()
-        fetch.fetch()
-        # summarize.summarize()
-        # translate.translate()
-        # tag.tag()
+        actions = [fetch]
+    elif command == "summarize":
+        log.debug("Command: summarize")
+        actions = [summarize]
+    elif command == "translate":
+        log.debug("Command: translate")
+        actions = [translate]
+    elif command == "tag":
+        log.debug("Command: tag")
+        actions = [tag]
     elif command == "generate":
         log.debug("Command: generate")
-        generate.generate()
+        actions = [generate]
     else:
         print("Unknown command: " + command)
+    for action in actions:
+        action.do()
     log.info("Program exits.")

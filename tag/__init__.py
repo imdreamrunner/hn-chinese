@@ -1,4 +1,4 @@
-from .tag import tag
+from .tag import do
 
 __author__ = "imdreamrunner"
 __email__ = "imdreamrunner@gmail.com"

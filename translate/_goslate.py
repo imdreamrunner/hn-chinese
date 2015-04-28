@@ -15,10 +15,10 @@ def _translate_single(origin):
 
 
 
-def translate_article(title, content, summary):
+def translate_article(title, summary):
     retry = 0
     try:
-        return _translate_single(title), _translate_single(content), _translate_single(summary)
+        return _translate_single(title), _translate_single(summary)
     except Exception as ex:
         print(ex)
         retry += 1

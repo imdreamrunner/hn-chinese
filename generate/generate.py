@@ -18,7 +18,7 @@ IMAGE_BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(_
 PAGE_SIZE = 10
 
 
-def generate():
+def do():
     articles = store.get_row_by_status(4)
     articles = [_process_article(article) for article in articles]
     page_number = 1
